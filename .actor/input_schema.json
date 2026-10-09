@@ -1,0 +1,64 @@
+{
+    "title": "Google Maps Business Scraper",
+    "description": "Search Google Maps by keyword and location. Each business is saved with its name, address, phone, category, rating, website, opening hours, reviews, and photo links.",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "searchQueries": {
+            "title": "Search queries",
+            "type": "array",
+            "description": "What to look up on Google Maps. Put a business type and a place on each line, for example \"coffee shop in Austin, TX\". Each line is searched separately.",
+            "editor": "stringList",
+            "default": ["coffee shop in Austin, TX"],
+            "prefill": ["coffee shop in Austin, TX"],
+            "minItems": 1,
+            "items": {
+                "type": "string"
+            }
+        },
+        "maxResultsPerQuery": {
+            "title": "Max results per query",
+            "type": "integer",
+            "description": "How many businesses to save for each search. The run stops at this number even when Google has more results.",
+            "default": 20,
+            "prefill": 20,
+            "minimum": 1,
+            "maximum": 1000
+        },
+        "includeReviews": {
+            "title": "Include reviews",
+            "type": "boolean",
+            "description": "Save review text for each business. Turn this off to skip reviews and finish faster.",
+            "default": true
+        },
+        "maxReviewsPerPlace": {
+            "title": "Max reviews per place",
+            "type": "integer",
+            "description": "How many reviews to keep for each business. This run stores a short set of review snippets, not a business's full review history. Set this to 0 to save no review text.",
+            "default": 8,
+            "prefill": 8,
+            "minimum": 0,
+            "maximum": 50
+        },
+        "requestDelaySecs": {
+            "title": "Delay between requests",
+            "type": "number",
+            "description": "Seconds to wait between requests to Google. The default is enough for a normal run. Increase it if requests start getting blocked.",
+            "default": 1.5,
+            "prefill": 1.5,
+            "minimum": 0,
+            "maximum": 30,
+            "unit": "seconds"
+        },
+        "proxyConfiguration": {
+            "title": "Proxy",
+            "type": "object",
+            "description": "Leave this off to connect directly. Turn on Apify Proxy to start with datacenter proxies. If Google blocks a request, that request is retried through a residential proxy.",
+            "editor": "proxy",
+            "default": {
+                "useApifyProxy": false
+            }
+        }
+    },
+    "required": ["searchQueries"]
+}

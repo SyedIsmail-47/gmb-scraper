@@ -1,0 +1,14 @@
+{
+    "actorSpecification": 1,
+    "name": "gmb-scraper",
+    "title": "Google Maps Business Scraper",
+    "description": "Search Google Maps and return structured business listings: name, address, phone, category, rating, website, opening hours, reviews, and photo links.",
+    "version": "0.1",
+    "buildTag": "latest",
+    "input": "./input_schema.json",
+    "output": "./output_schema.json",
+    "dockerfile": "../Dockerfile",
+    "storages": {
+        "dataset": "./dataset_schema.json"
+    }
+}

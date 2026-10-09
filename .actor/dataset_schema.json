@@ -1,0 +1,217 @@
+{
+    "actorSpecification": 1,
+    "title": "Businesses",
+    "description": "One record per Google Maps business.",
+    "fields": {
+        "type": "object",
+        "properties": {
+            "placeId": {
+                "type": "string",
+                "title": "Place ID",
+                "description": "Google Maps place ID, starting with ChIJ."
+            },
+            "featureId": {
+                "type": "string",
+                "title": "Feature ID",
+                "description": "Google feature ID for the same place, in 0x…:0x… form."
+            },
+            "name": {
+                "type": "string",
+                "title": "Name",
+                "description": "Business name as shown on Google Maps."
+            },
+            "address": {
+                "type": ["string", "null"],
+                "title": "Address",
+                "description": "Street address. Empty when Google does not list one."
+            },
+            "phone": {
+                "type": ["string", "null"],
+                "title": "Phone",
+                "description": "Phone number, in international format when Google provides it."
+            },
+            "category": {
+                "type": ["string", "null"],
+                "title": "Category",
+                "description": "Primary category, such as Real estate agency."
+            },
+            "categories": {
+                "type": "array",
+                "title": "Categories",
+                "description": "Every category Google lists for the business.",
+                "items": {
+                    "type": "string"
+                }
+            },
+            "rating": {
+                "type": ["number", "null"],
+                "title": "Rating",
+                "description": "Average star rating from 1 to 5. Empty when the business has no rating."
+            },
+            "reviewCount": {
+                "type": ["integer", "null"],
+                "title": "Review count",
+                "description": "Reviews saved on this record. After a successful lookup with reviews turned on, this matches the number of snippets in reviews, not Google's full total."
+            },
+            "coordinates": {
+                "type": ["object", "null"],
+                "title": "Coordinates",
+                "description": "Latitude and longitude of the business.",
+                "properties": {
+                    "latitude": {
+                        "type": "number",
+                        "title": "Latitude"
+                    },
+                    "longitude": {
+                        "type": "number",
+                        "title": "Longitude"
+                    }
+                }
+            },
+            "searchQuery": {
+                "type": "string",
+                "title": "Search query",
+                "description": "The search that found this business."
+            },
+            "website": {
+                "type": ["string", "null"],
+                "title": "Website",
+                "description": "Business website. Empty when Google does not list one."
+            },
+            "openingHours": {
+                "type": ["object", "null"],
+                "title": "Opening hours",
+                "description": "Hours by weekday. Each day is a list of ranges, such as 9 AM–5 PM, Open 24 hours, or Closed. Empty when hours were not available.",
+                "additionalProperties": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "reviews": {
+                "type": "array",
+                "title": "Reviews",
+                "description": "Review snippets with text, star rating, and the author's Google profile URL. Capped by Max reviews per place.",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "text": {
+                            "type": "string",
+                            "title": "Text",
+                            "description": "Review text."
+                        },
+                        "rating": {
+                            "type": ["number", "null"],
+                            "title": "Rating",
+                            "description": "Star rating for this review."
+                        },
+                        "authorUrl": {
+                            "type": ["string", "null"],
+                            "title": "Author URL",
+                            "description": "Link to the reviewer's Google profile."
+                        }
+                    }
+                }
+            },
+            "photoUrls": {
+                "type": "array",
+                "title": "Photo URLs",
+                "description": "Links to the business's photos. The image files are not downloaded.",
+                "items": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "views": {
+        "overview": {
+            "title": "Businesses",
+            "description": "One row per business found on Google Maps.",
+            "transformation": {
+                "fields": [
+                    "name",
+                    "category",
+                    "address",
+                    "phone",
+                    "website",
+                    "rating",
+                    "reviewCount",
+                    "openingHours",
+                    "reviews",
+                    "photoUrls",
+                    "categories",
+                    "coordinates",
+                    "searchQuery",
+                    "placeId",
+                    "featureId"
+                ]
+            },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "name": {
+                        "label": "Name",
+                        "format": "text"
+                    },
+                    "category": {
+                        "label": "Category",
+                        "format": "text"
+                    },
+                    "address": {
+                        "label": "Address",
+                        "format": "text"
+                    },
+                    "phone": {
+                        "label": "Phone",
+                        "format": "text"
+                    },
+                    "website": {
+                        "label": "Website",
+                        "format": "link"
+                    },
+                    "rating": {
+                        "label": "Rating",
+                        "format": "number"
+                    },
+                    "reviewCount": {
+                        "label": "Review count",
+                        "format": "number"
+                    },
+                    "openingHours": {
+                        "label": "Opening hours",
+                        "format": "object"
+                    },
+                    "reviews": {
+                        "label": "Reviews",
+                        "format": "array"
+                    },
+                    "photoUrls": {
+                        "label": "Photo URLs",
+                        "format": "array"
+                    },
+                    "categories": {
+                        "label": "Categories",
+                        "format": "array"
+                    },
+                    "coordinates": {
+                        "label": "Coordinates",
+                        "format": "object"
+                    },
+                    "searchQuery": {
+                        "label": "Search query",
+                        "format": "text"
+                    },
+                    "placeId": {
+                        "label": "Place ID",
+                        "format": "text"
+                    },
+                    "featureId": {
+                        "label": "Feature ID",
+                        "format": "text"
+                    }
+                }
+            }
+        }
+    }
+}

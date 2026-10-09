@@ -1,0 +1,11 @@
+{
+    "actorOutputSchemaVersion": 1,
+    "title": "Output schema of the Google Maps Business Scraper",
+    "properties": {
+        "results": {
+            "type": "string",
+            "title": "Scraped businesses",
+            "template": "{{links.apiDefaultDatasetUrl}}/items"
+        }
+    }
+}
